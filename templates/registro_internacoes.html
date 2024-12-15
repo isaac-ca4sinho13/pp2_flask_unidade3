@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Internação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #008080, #04ffff );
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #008080;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .nav-container {
+            background-color: #006666;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .nav-container ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav-container ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .nav-container ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .nav-container ul li a:hover {
+            background-color: #004c4c;
+            border-radius: 5px;
+        }
+
+
+        .form-container {
+            padding: 20px;
+            margin: auto;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h1 {
+            color: #008080;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 14px;
+            color: #006666;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 48%;
+        }
+
+        button:hover {
+            background-color: #004c4c;
+        }
+
+        button:last-child {
+            background-color: #006666;
+        }
+
+        button:last-child:hover {
+            background-color: #004c4c;
+        }
+        .user-info {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        img{
+            height: 50px;
+            width: 50px;
+            margin-top: 30px;
+            margin-right: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>HOSPITAL BOMBÁSTICO</h1>
+    </div>
+
+        {% if 'username' in session %}
+        <img src="static\imagens\icone-de-perfil.png" alt="ícone de perfil" class="user-info">
+            <div class="user-info">
+                
+
+                {{ session['username'] }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="nav-container">
+        <ul>
+            <li><a href="/exemplo">Início</a></li>
+            <li><a href="/pac">Cadastrar Paciente</a></li>
+            <li><a href="/doc">Cadastrar Médico</a></li>
+            <li><a href="/listar_medicos">Ver Médicos</a></li>
+            <li><a href="/listar_pacientes">Ver Pacientes</a></li>
+            <li><a href="/rem">Registrar novo medicamneto</a></li>
+            <li><a href="/listar_medicamentos">Ver Medicamentos</a></li>
+            <li><a href="/inter">Registrar Internação</a></li>
+            <li><a href="/listar_internacoes">Ver Internações</a></li>
+            <li><a href="/con">Registrar Consulta</a></li>
+            <li><a href="/listar_consultas">Ver Consultas</a></li>
+            <li><a href="/exames">Exames</a></li>
+            <li><a href="/logout">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="form-container">
+        <h1>Cadastro de Internação</h1>
+        <form action="/registrar_internacao" method="POST">
+            <label for="id_paciente">ID do Paciente</label>
+            <input type="text" id="id_pac" name="id_paciente" placeholder="ID do Paciente" required>
+
+            <label for="id_medico">ID do Médico</label>
+            <input type="text" id="id_medico" name="id_medico" placeholder="ID do Médico" required>
+
+            <label for="data_inicio">Data de Início</label>
+            <input type="date" id="data_inicio" name="data_inicio" required>
+
+            <label for="data_fim">Data de Fim</label>
+            <input type="date" id="data_fim" name="data_fim" required>
+
+            <label for="observacoes">Observações</label>
+            <input type="text" id="observacoes" name="observacoes" placeholder="Observações" required>
+
+            <button type="submit">Cadastrar</button>
+            <button type="button" onclick="history.back()">Voltar</button>
+        </form>
+    </div>
+</body>
+
+</html>

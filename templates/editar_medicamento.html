@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Medicamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #008080, #04ffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #008080;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .nav-container {
+            background-color: #006666;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .nav-container ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav-container ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .nav-container ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .nav-container ul li a:hover {
+            background-color: #004c4c;
+            border-radius: 5px;
+        }
+
+
+        .form-container {
+            padding: 28px;
+            margin: auto;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #004c4c;
+        }
+
+        .cancel-button {
+            background-color: #ccc;
+            color: black;
+        }
+
+        .cancel-button:hover {
+            background-color: #999;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        img{
+            height: 50px;
+            width: 50px;
+            margin-top: 30px;
+            margin-right: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>HOSPITAL BOMBÁSTICO</h1>
+
+        {% if 'username' in session %}
+        <img src="\static\imagens\icone-de-perfil.png" alt="ícone de perfil" class="user-info">
+            <div class="user-info">
+                
+
+                {{ session['username'] }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="nav-container">
+        <ul>
+            <li><a href="/exemplo">Início</a></li>
+            <li><a href="/pac">Cadastrar Paciente</a></li>
+            <li><a href="/doc">Cadastrar Médico</a></li>
+            <li><a href="/listar_medicos">Ver Médicos</a></li>
+            <li><a href="/listar_pacientes">Ver Pacientes</a></li>
+            <li><a href="/rem">Registrar novo medicamneto</a></li>
+            <li><a href="/listar_medicamentos">Ver Medicamentos</a></li>
+            <li><a href="/inter">Registrar Internação</a></li>
+            <li><a href="/listar_internacoes">Ver Internações</a></li>
+            <li><a href="/con">Registrar Consulta</a></li>
+            <li><a href="/listar_consultas">Ver Consultas</a></li>
+            <li><a href="/exames">Exames</a></li>
+            <li><a href="/logout">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="form-container">
+        <form action="{{ url_for('atualizar_medicamento', id=medicamento.id) }}" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ medicamento.nome }}" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4" required>{{ medicamento.descricao }}</textarea>
+
+            <label for="fabricante">Fabricante:</label>
+            <input type="text" id="fabricante" name="fabricante" value="{{ medicamento.fabricante }}" required>
+
+            <label for="validade">Validade:</label>
+            <input type="date" id="validade" name="validade" value="{{ medicamento.validade }}" required>
+
+            <button type="submit">Salvar Alterações</button>
+            <button type="button" class="cancel-button" onclick="window.location.href='/listar_medicamentos'">Cancelar</button>
+        </form>
+    </div>
+</body>
+
+</html>

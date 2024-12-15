@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Medicamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #008080, #04ffff );
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #008080;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .nav-container {
+            background-color: #006666;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .nav-container ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav-container ul li {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .nav-container ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .nav-container ul li a:hover {
+            background-color: #004c4c;
+            border-radius: 5px;
+        }
+
+
+        .form-container {
+            padding: 30px;
+            margin: auto;
+            max-width: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h1 {
+            color: #008080;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 48%;
+        }
+
+        button:hover {
+            background-color: #004c4c;
+        }
+
+        button:last-child {
+            background-color: #006666;
+        }
+
+        button:last-child:hover {
+            background-color: #004c4c;
+        }
+        .user-info {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        img{
+            height: 50px;
+            width: 50px;
+            margin-top: 30px;
+            margin-right: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>HOSPITAL BOMBÁSTICO</h1>
+    </div>
+
+
+        {% if 'username' in session %}
+        <img src="static\imagens\icone-de-perfil.png" alt="ícone de perfil" class="user-info">
+            <div class="user-info">
+                
+
+                {{ session['username'] }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="nav-container">
+        <ul>
+            <li><a href="/exemplo">Início</a></li>
+            <li><a href="/pac">Cadastrar Paciente</a></li>
+            <li><a href="/doc">Cadastrar Médico</a></li>
+            <li><a href="/listar_medicos">Ver Médicos</a></li>
+            <li><a href="/listar_pacientes">Ver Pacientes</a></li>
+            <li><a href="/rem">Registrar novo medicamneto</a></li>
+            <li><a href="/listar_medicamentos">Ver Medicamentos</a></li>
+            <li><a href="/inter">Registrar Internação</a></li>
+            <li><a href="/listar_internacoes">Ver Internações</a></li>
+            <li><a href="/con">Registrar Consulta</a></li>
+            <li><a href="/listar_consultas">Ver Consultas</a></li>
+            <li><a href="/exames">Exames</a></li>
+            <li><a href="/logout">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="form-container">
+        <h1>Cadastro de Medicamento</h1>
+        <form action="/registrar_medicamento" method="POST">
+            <input type="text" placeholder="Nome do Medicamento" name="nome" required>
+            <textarea placeholder="Descrição" name="descricao" rows="5"></textarea>
+            <input type="text" placeholder="Fabricante" name="fabricante">
+            <input type="date" placeholder="Data de Validade" name="validade" required>
+            <button type="submit">Cadastrar</button>
+            <button type="button" onclick="history.back()">Voltar</button>
+        </form>
+    </div>
+</body>
+
+</html>
